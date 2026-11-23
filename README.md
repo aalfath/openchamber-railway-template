@@ -1,3 +1,5 @@
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/openchamber-1?utm_medium=integration&utm_source=button&utm_campaign=openchamber)
+
 # OpenChamber on Railway
 
 This repo packages [OpenChamber](https://github.com/openchamber/openchamber), a web workspace for the [OpenCode](https://opencode.ai) AI coding agent, for one-click deployment on [Railway](https://railway.com). You get chat sessions with the agent, diffs, a file browser and a terminal in your browser, behind a password.
