@@ -12,12 +12,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 COPY package.json bun.lock ./
-# Install exactly what bun.lock pins. The OpenCode postinstall picks the right binary for the
-# CPU; the other three Linux x64 variants (about 730 MB) are removed afterwards.
+# Install exactly what bun.lock pins. OpenCode ships one binary per CPU variant; keep the
+# "baseline" x64 build (runs on any x86-64 host, no AVX2 needed) and drop the other
+# variants (about 730 MB).
 RUN bun install --frozen-lockfile --production \
-  && ./node_modules/.bin/opencode --version \
-  && real="$(readlink -f node_modules/@opencode/cli/bin/opencode.exe)" \
-  && cp --remove-destination "$real" node_modules/@opencode/cli/bin/opencode.exe \
+  && rm node_modules/@opencode/cli/bin/opencode.exe \
+  && cp node_modules/@opencode/cli-linux-x64-baseline/bin/opencode node_modules/@opencode/cli/bin/opencode.exe \
   && rm -r node_modules/@opencode/cli-linux-* \
   && ln -s /app/node_modules/.bin/opencode /usr/local/bin/opencode \
   && printf '#!/bin/sh\nexec bun /app/node_modules/@openchamber/web/bin/cli.js "$@"\n' > /usr/local/bin/openchamber \
