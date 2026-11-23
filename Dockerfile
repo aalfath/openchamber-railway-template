@@ -26,9 +26,13 @@ RUN bun install --frozen-lockfile --production \
 
 # Everything OpenChamber and OpenCode store (settings, sessions, provider credentials, SSH key)
 # lives under HOME, and your code lives in /data/workspaces. Mount one Railway volume at /data.
+# OPENCODE_DISABLE_MODELS_FETCH: use the model catalogue bundled with OpenCode instead of
+# downloading the live one on the first prompt. The download pushes OpenCode past 0.5 GB RAM
+# (OOM-killed on Railway's Free plan); the bundled catalogue still lists 300+ providers.
 ENV HOME=/data/home \
     OPENCHAMBER_OPENCODE_CWD=/data/workspaces \
     OPENCODE_DISABLE_AUTOUPDATE=1 \
+    OPENCODE_DISABLE_MODELS_FETCH=1 \
     NODE_ENV=production \
     LANG=C.UTF-8 \
     PORT=3000

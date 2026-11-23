@@ -28,7 +28,7 @@ echo "[railway] SSH public key: $(cat "$HOME/.ssh/id_ed25519.pub")"
 PROVIDER_FILE="$HOME/.config/opencode/railway-provider.json"
 if [ -n "${LLM_API_KEY:-}" ]; then
   : "${LLM_BASE_URL:=https://api.openai.com/v1}"
-  : "${LLM_MODEL:=gpt-4.1-mini}"
+  : "${LLM_MODEL:=gpt-5-mini}"
   jq -n --arg url "$LLM_BASE_URL" --arg model "$LLM_MODEL" '{
     "$schema": "https://opencode.ai/config.json",
     provider: { railway: {
