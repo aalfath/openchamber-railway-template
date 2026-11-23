@@ -1,0 +1,13 @@
+{
+  "name": "openchamber-railway-template",
+  "private": true,
+  "version": "2.8.0",
+  "description": "OpenChamber (web UI for the OpenCode AI coding agent) packaged for Railway",
+  "dependencies": {
+    "@openchamber/web": "2.8.0",
+    "@opencode/cli": "2.3.2"
+  },
+  "trustedDependencies": [
+    "@opencode/cli"
+  ]
+}
